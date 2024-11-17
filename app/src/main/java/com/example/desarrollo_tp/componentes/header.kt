@@ -26,14 +26,14 @@ fun header(){
     Row(modifier= Modifier
         .fillMaxWidth()
         .background(color = Menta)
-        .height(40.dp),
+        .height(50.dp),
         verticalAlignment = Alignment.CenterVertically
     ){
         Icon(Icons.Outlined.Menu, contentDescription = "menu", modifier = Modifier.size(35.dp))
         Image(
             painter = painterResource(id= R.drawable.logo),
             contentDescription = "logo",
-            modifier = Modifier.size(75.dp)
+            modifier = Modifier.size(90.dp)
         )
 
         Spacer(modifier = Modifier.weight(1f))

@@ -5,23 +5,25 @@ package com.example.desarrollo_tp.pantallas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
-
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.AccountCircle
-import androidx.compose.material.icons.outlined.ExitToApp
-import androidx.compose.material.icons.outlined.Menu
+import androidx.compose.material.icons.outlined.DateRange
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.MailOutline
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
@@ -37,12 +39,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.desarrollo_tp.R
-import com.example.desarrollo_tp.R.drawable.unlam1
+import com.example.desarrollo_tp.componentes.footer
 import com.example.desarrollo_tp.componentes.header
 import com.example.desarrollo_tp.ui.theme.Gris
-
 import com.example.desarrollo_tp.ui.theme.Menta
-import com.example.desarrollo_tp.ui.theme.Negro1
 
 @Composable
 fun Pantalla1(){
@@ -62,12 +62,10 @@ fun body(){
     carrusel()
     homecards()
     carruseldepto()
-}
-
-@Composable
-fun footer(){
 
 }
+
+
 @Composable
 fun carrusel(){
 
@@ -176,22 +174,22 @@ Card (modifier = Modifier.padding(10.dp)) {
 
     ){
         Image(
-            painter = painterResource(id = R.drawable.unlam4),
+            painter = painterResource(id = R.drawable.ico_derecho),
             contentDescription = "imagen1",
             modifier = Modifier.weight(1f).padding(7.dp)
         )
         Image(
-            painter = painterResource(id = R.drawable.unlam4),
+            painter = painterResource(id = R.drawable.ico_ingenieria),
             contentDescription = "imagen1",
             modifier = Modifier.weight(1f).padding(7.dp)
         )
         Image(
-            painter = painterResource(id = R.drawable.unlam4),
+            painter = painterResource(id = R.drawable.ico_economicas),
             contentDescription = "imagen1",
             modifier = Modifier.weight(1f).padding(7.dp)
         )
         Image(
-            painter = painterResource(id = R.drawable.unlam4),
+            painter = painterResource(id = R.drawable.ico_humanidades),
             contentDescription = "imagen1",
             modifier = Modifier.weight(1f).padding(7.dp)
         )
