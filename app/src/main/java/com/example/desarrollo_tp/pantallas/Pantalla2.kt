@@ -20,12 +20,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import com.example.desarrollo_tp.componentes.BottomBar
 import com.example.desarrollo_tp.componentes.Calendario
 import com.example.desarrollo_tp.ui.theme.Gris
 import com.example.desarrollo_tp.ui.theme.Menta
 
 @Composable
-fun Pantalla2(modifier: Modifier = Modifier.fillMaxSize()){
+fun Pantalla2(modifier: Modifier = Modifier.fillMaxSize(),
+              controller: NavHostController
+){
 
     Column(modifier = Modifier.fillMaxSize().background(color = Gris)) {
 
@@ -41,7 +45,7 @@ fun Pantalla2(modifier: Modifier = Modifier.fillMaxSize()){
                 Text(text =  "Calendario",
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center,
-                    fontSize = 20.sp
+                    fontSize = 18.sp
                     )
             }
 
@@ -53,7 +57,7 @@ fun Pantalla2(modifier: Modifier = Modifier.fillMaxSize()){
                 Text(text = "Agenda",
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center,
-                    fontSize = 20.sp
+                    fontSize = 18.sp
                     )
             }
 
@@ -68,10 +72,4 @@ fun Pantalla2(modifier: Modifier = Modifier.fillMaxSize()){
 
     }
 
-}
-
-@Preview
-@Composable
-fun previewPantalla(){
-    Pantalla2()
 }

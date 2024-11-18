@@ -38,20 +38,21 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.desarrollo_tp.R
-import com.example.desarrollo_tp.componentes.footer
+import com.example.desarrollo_tp.componentes.BottomBar
 import com.example.desarrollo_tp.componentes.header
 import com.example.desarrollo_tp.ui.theme.Gris
 import com.example.desarrollo_tp.ui.theme.Menta
 
 @Composable
-fun Pantalla1(){
+fun Pantalla1(controller: NavHostController){
 
     Column(modifier = Modifier.background(color = Gris)){
 
         header()
         body()
-        footer()
+
     }
 
 }
@@ -59,6 +60,7 @@ fun Pantalla1(){
 
 @Composable
 fun body(){
+
     carrusel()
     homecards()
     carruseldepto()
@@ -68,8 +70,7 @@ fun body(){
 
 @Composable
 fun carrusel(){
-
-
+    
    Image(
        painter = painterResource(id = R.drawable.unlam4),
        contentDescription = "imagen1"
@@ -196,10 +197,3 @@ Card (modifier = Modifier.padding(10.dp)) {
     }
 }
 
-
-
-@Preview(showSystemUi = true)
-@Composable
-fun previewpantalla(){
-    Pantalla1()
-}
