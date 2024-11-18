@@ -70,7 +70,7 @@ fun body(){
 
 @Composable
 fun carrusel(){
-    
+
    Image(
        painter = painterResource(id = R.drawable.unlam4),
        contentDescription = "imagen1"
