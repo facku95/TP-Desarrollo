@@ -57,6 +57,17 @@ fun Pantalla1(controller: NavHostController){
     items(1) {
         header()
         body()
+
+        Spacer(Modifier.size(30.dp))
+        Card (modifier = Modifier.padding(10.dp)) {
+            Text(
+                "Novedades",
+                modifier = Modifier.fillMaxWidth().wrapContentWidth(Alignment.CenterHorizontally).padding(3.dp),
+                style = TextStyle(
+                    fontSize = 25.sp
+                )
+            )
+        }
     }
             items(5) {
                 Spacer(Modifier.size(10.dp))
@@ -175,8 +186,8 @@ Card (modifier = Modifier.padding(10.dp)) {
     )
 }
 
-
     }
+
     Spacer(modifier = Modifier.size(15.dp))
     Row (
         modifier = Modifier.fillMaxWidth(),

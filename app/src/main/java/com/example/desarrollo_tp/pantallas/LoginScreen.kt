@@ -1,8 +1,11 @@
 package com.example.desarrollo_tp.pantallas
 
+import android.content.res.Resources
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -12,8 +15,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.max
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.desarrollo_tp.NavigationRoutes
+import com.example.desarrollo_tp.R
 import com.example.desarrollo_tp.ui.theme.Gris
 import com.example.desarrollo_tp.ui.theme.Menta
 
@@ -35,14 +41,27 @@ fun LoginScreen(navController: NavHostController, modifier: Modifier = Modifier.
         verticalArrangement = Arrangement.Center
     ) {
 
+        Box(modifier = Modifier.width(300.dp).height(180.dp)
+            .background(color = Menta, shape = RoundedCornerShape(16.dp))
+            .padding(horizontal = 30.dp, vertical = 30.dp),
+            contentAlignment = Alignment.Center,
+        ){
+
+            Image(painter = painterResource(R.drawable.unlam5), contentDescription = "Logo Unlam", modifier = Modifier.fillMaxSize())
+
+        }
+
+        Spacer(Modifier.size(32.dp))
 
         Text(
             text = "Universidad Nacional de La Matanza",
             color = Color.White,
             style = MaterialTheme.typography.headlineMedium,
+            maxLines = 1,
             modifier = Modifier
                 .padding(bottom = 32.dp, start = 16.dp, end = 16.dp)
-                .align(Alignment.CenterHorizontally)
+                .align(Alignment.CenterHorizontally),
+            fontSize = 20.sp
         )
 
 
