@@ -67,6 +67,7 @@ fun LoginScreen(navController: NavHostController, modifier: Modifier = Modifier.
 
         OutlinedTextField(
             value = email,
+            maxLines = 1,
             onValueChange = { email = it },
             label = { Text("Usuario") },
             modifier = Modifier
@@ -81,6 +82,7 @@ fun LoginScreen(navController: NavHostController, modifier: Modifier = Modifier.
 
         OutlinedTextField(
             value = password,
+            maxLines = 1,
             onValueChange = { password = it },
             label = { Text("Contraseña") },
             modifier = Modifier
