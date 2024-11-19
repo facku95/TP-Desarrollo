@@ -17,10 +17,13 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.desarrollo_tp.componentes.BottomBar
+import com.example.desarrollo_tp.pantallas.LoginScreen
 import com.example.desarrollo_tp.pantallas.Pantalla1
 import com.example.desarrollo_tp.pantallas.Pantalla2
+import com.example.desarrollo_tp.pantallas.Pantalla3
 import com.example.desarrollo_tp.ui.theme.DesarrolloTPTheme
 
 class MainActivity : ComponentActivity() {
@@ -31,9 +34,22 @@ class MainActivity : ComponentActivity() {
         setContent {
             val controller = rememberNavController()
             DesarrolloTPTheme {
-                Scaffold(modifier = Modifier.fillMaxSize(), bottomBar = { BottomBar(controller) }) { paddingValue ->
+                val navBackStackEntry = controller.currentBackStackEntryAsState()
+                val currentRoute = navBackStackEntry.value?.destination?.route
+                Scaffold(modifier = Modifier.fillMaxSize(), bottomBar =
+                {
+                    if (currentRoute != "login") {
+                    BottomBar(controller)
+                }
+                    }   ) { paddingValue ->
                     NavHost(navController = controller,
-                        startDestination = NavigationRoutes.Pantalla1.route){
+                        startDestination = NavigationRoutes.Login.route){
+
+                        composable(NavigationRoutes.Login.route) {
+
+                            LoginScreen(controller)
+
+                        }
 
                         composable(NavigationRoutes.Pantalla1.route) {
 
@@ -45,7 +61,11 @@ class MainActivity : ComponentActivity() {
                             Pantalla2(Modifier.fillMaxSize(), controller)
 
                         }
+                        composable(NavigationRoutes.Pantalla3.route){
 
+                            Pantalla3(controller)
+
+                        }
 
                     }
 

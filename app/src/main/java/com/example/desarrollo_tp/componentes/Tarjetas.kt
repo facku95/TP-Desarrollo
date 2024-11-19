@@ -63,7 +63,11 @@ fun Tarjeta(){
 
             Box(modifier = Modifier.fillMaxWidth().height(150.dp)){
 
-                Text(text= "Descripción", textAlign = TextAlign.Left, fontSize = 15.sp, modifier = Modifier.padding(start = 10.dp))
+                Text(text= "Descripción",
+                    textAlign = TextAlign.Left,
+                    fontSize = 15.sp,
+                    modifier = Modifier.padding(start = 10.dp)
+                )
 
             }
 

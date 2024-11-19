@@ -38,7 +38,7 @@ import com.example.desarrollo_tp.ui.theme.Menta
 @Composable
 fun BottomBar(controller: NavHostController) {
     val navBackStackEntry by controller.currentBackStackEntryAsState()
-    NavigationBar(modifier = Modifier.fillMaxWidth().height(115.dp)) {
+    NavigationBar(modifier = Modifier.fillMaxWidth().height(100.dp)) {
         NavigationBarItem(
             selected = navBackStackEntry?.destination?.hierarchy?.any { it.route == "pantalla1" } == true,
             onClick = { controller.navigate("pantalla1") },
@@ -62,8 +62,8 @@ fun BottomBar(controller: NavHostController) {
         )
         //Ajustar a pantalla3
         NavigationBarItem(
-            selected = navBackStackEntry?.destination?.hierarchy?.any { it.route == "pantalla2" } == true,
-            onClick = {controller.navigate("pantalla2")},
+            selected = navBackStackEntry?.destination?.hierarchy?.any { it.route == "pantalla3" } == true,
+            onClick = {controller.navigate("pantalla3")},
             icon = {
                 Icon(Icons.Outlined.Person,
                     contentDescription = "",

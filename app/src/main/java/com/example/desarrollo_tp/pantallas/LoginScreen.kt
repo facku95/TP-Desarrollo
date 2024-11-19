@@ -19,7 +19,7 @@ import com.example.desarrollo_tp.ui.theme.Menta
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(navController1: Modifier, navController: NavHostController) {
+fun LoginScreen(navController: NavHostController, modifier: Modifier = Modifier.fillMaxSize()) {
     var email by remember { mutableStateOf(TextFieldValue("")) }
     var password by remember { mutableStateOf(TextFieldValue("")) }
     var errorMessage by remember { mutableStateOf("") }
@@ -30,7 +30,6 @@ fun LoginScreen(navController1: Modifier, navController: NavHostController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
             .background(Gris),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
@@ -42,7 +41,7 @@ fun LoginScreen(navController1: Modifier, navController: NavHostController) {
             color = Color.White,
             style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier
-                .padding(bottom = 32.dp)
+                .padding(bottom = 32.dp, start = 16.dp, end = 16.dp)
                 .align(Alignment.CenterHorizontally)
         )
 
@@ -53,7 +52,7 @@ fun LoginScreen(navController1: Modifier, navController: NavHostController) {
             label = { Text("Usuario") },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 16.dp),
+                .padding(bottom = 16.dp, start = 16.dp, end = 16.dp),
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 focusedBorderColor = Menta,
                 unfocusedBorderColor = Color.Gray
@@ -67,7 +66,7 @@ fun LoginScreen(navController1: Modifier, navController: NavHostController) {
             label = { Text("Contraseña") },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 16.dp),
+                .padding(bottom = 16.dp, start = 16.dp, end = 16.dp),
             visualTransformation = PasswordVisualTransformation(),
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 focusedBorderColor = Menta,
@@ -84,10 +83,11 @@ fun LoginScreen(navController1: Modifier, navController: NavHostController) {
             onClick = {
 
                 navController.navigate(NavigationRoutes.Pantalla1.route)
+
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 8.dp),
+                .padding(vertical = 8.dp, horizontal = 16.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Menta),
             shape = MaterialTheme.shapes.medium,
             elevation = ButtonDefaults.buttonElevation(8.dp)
