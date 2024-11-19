@@ -116,8 +116,10 @@ fun Pantalla3(controller : NavHostController) {
             Spacer(modifier = Modifier.height(16.dp))
 
             // Tarjetas adicionales
+            OptionCardDark(text = "Historial academico")
+            OptionCardDark(text = "Oferta de materias")
             OptionCardDark(text = "Ver plan de estudio")
-            OptionCardDark(text = "MIEL")
+            OptionCardDark(text = "MIeL")
             OptionCardDark(text = "Intraconsulta")
         }
     }

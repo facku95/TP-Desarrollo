@@ -8,6 +8,7 @@ val Pink80 = Color(0xFFEFB8C8)
 val Menta = Color(0xFF168C6B)
 val Gris = Color(0xFF262626)
 val Negro1 = Color(0xFF121212)
+val VerdeOscuro = Color(0xFF07503C)
 
 
 val Purple40 = Color(0xFF6650a4)
