@@ -7,10 +7,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -19,6 +21,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.DateRange
 import androidx.compose.material.icons.outlined.Home
@@ -41,6 +45,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.desarrollo_tp.R
 import com.example.desarrollo_tp.componentes.BottomBar
+import com.example.desarrollo_tp.componentes.Tarjeta
 import com.example.desarrollo_tp.componentes.header
 import com.example.desarrollo_tp.ui.theme.Gris
 import com.example.desarrollo_tp.ui.theme.Menta
@@ -48,13 +53,17 @@ import com.example.desarrollo_tp.ui.theme.Menta
 @Composable
 fun Pantalla1(controller: NavHostController){
 
-    Column(modifier = Modifier.background(color = Gris)){
-
+    LazyColumn(modifier = Modifier.fillMaxHeight().background(color = Gris).padding(bottom = 130.dp)){
+    items(1) {
         header()
         body()
+    }
+            items(5) {
+                Spacer(Modifier.size(10.dp))
+                Tarjeta()
+            }
 
     }
-
 }
 
 

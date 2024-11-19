@@ -1,6 +1,8 @@
 package com.example.desarrollo_tp
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.WindowInsets
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -11,6 +13,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -23,11 +27,11 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        hideSystemBars()
         setContent {
             val controller = rememberNavController()
             DesarrolloTPTheme {
                 Scaffold(modifier = Modifier.fillMaxSize(), bottomBar = { BottomBar(controller) }) { paddingValue ->
-
                     NavHost(navController = controller,
                         startDestination = NavigationRoutes.Pantalla1.route){
 
@@ -48,5 +52,18 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+
+    }
+
+    //Oculta barras del sistema.
+    @SuppressLint("WrongConstant")
+    fun hideSystemBars() {
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        val controller = WindowInsetsControllerCompat(window, window.decorView)
+        controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_BARS_BY_SWIPE
+        controller.hide(WindowInsets.Type.systemBars())
     }
 }
+
+
+
