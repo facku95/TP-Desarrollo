@@ -20,7 +20,8 @@ fun Calendario(modifier: Modifier){
     DatePicker(state,
         modifier = Modifier.fillMaxSize(),
     colors = DatePickerDefaults.colors(
-        selectedDayContainerColor =  Menta
+        selectedDayContainerColor =  Menta,
+        selectedDayContentColor = Color.White
     )
     )
 }

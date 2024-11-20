@@ -1,9 +1,7 @@
 package com.example.desarrollo_tp.pantallas
 
-import android.content.res.Resources
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -15,7 +13,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.max
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.desarrollo_tp.NavigationRoutes
@@ -26,7 +23,7 @@ import com.example.desarrollo_tp.ui.theme.Menta
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(navController: NavHostController, modifier: Modifier = Modifier.fillMaxSize()) {
-    var email by remember { mutableStateOf(TextFieldValue("")) }
+    var dni by remember { mutableStateOf(TextFieldValue("")) }
     var password by remember { mutableStateOf(TextFieldValue("")) }
     var errorMessage by remember { mutableStateOf("") }
 
@@ -66,10 +63,10 @@ fun LoginScreen(navController: NavHostController, modifier: Modifier = Modifier.
 
 
         OutlinedTextField(
-            value = email,
+            value = dni,
             maxLines = 1,
-            onValueChange = { email = it },
-            label = { Text("Usuario") },
+            onValueChange = { dni = it },
+            label = { Text("DNI") },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 16.dp, start = 16.dp, end = 16.dp),

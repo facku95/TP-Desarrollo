@@ -1,5 +1,6 @@
 package com.example.desarrollo_tp.pantallas
 
+import android.graphics.Paint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -11,9 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -21,18 +20,12 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.desarrollo_tp.ui.theme.Menta
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 
 @Composable
 fun Pantalla3(controller : NavHostController) {
@@ -74,21 +67,21 @@ fun Pantalla3(controller : NavHostController) {
             )
 
             Text(
-                text = "Ingeniería en Sistemas",
+                text = "Carrera",
                 fontSize = 16.sp,
                 color = Color.Gray
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(35.dp))
 
             // Progreso Académico
             Text(
-                text = "Promedio de notas anualmente",
+                text = "Desempeño Academico",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(15.dp))
 
             // Gráfico de Barras
             AcademicProgressGraphDark()
@@ -122,23 +115,23 @@ fun Pantalla3(controller : NavHostController) {
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Text(text = "Promedio:", color = Color.Gray)
-                        Text(text = "8.5", fontWeight = FontWeight.Bold, color = Color.White)
+                        Text(text = "6.5", fontWeight = FontWeight.Bold, color = Color.White)
                     }
                 }
             }
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Gráfico de Coordinadas
+            // Gráfico de Coordenadas
             Text(
-                text = "Desempeño por Materias",
+                text = "Desempeño por Materia",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White
             )
             Spacer(modifier = Modifier.height(8.dp))
             MateriasDropdown()
-            ExamWorkGraph()
+            GraficoDeCoordenadas()
             Spacer(modifier = Modifier.height(16.dp))
 
 
@@ -166,10 +159,30 @@ fun AcademicProgressGraphDark() {
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.Bottom
         ) {
+            Column() {
+                Text(text = "10", textAlign = TextAlign.Center, color = Color.Gray, fontSize = 12.sp)
+                Text(text = "9", textAlign = TextAlign.Center, color = Color.Gray, fontSize = 12.sp)
+                Text(text = "8", textAlign = TextAlign.Center, color = Color.Gray, fontSize = 12.sp)
+                Text(text = "7", textAlign = TextAlign.Center, color = Color.Gray, fontSize = 12.sp)
+                Text(text = "6", textAlign = TextAlign.Center, color = Color.Gray, fontSize = 12.sp)
+                Text(text = "5", textAlign = TextAlign.Center, color = Color.Gray, fontSize = 12.sp)
+                Text(text = "4", textAlign = TextAlign.Center, color = Color.Gray, fontSize = 12.sp)
+                Text(text = "3", textAlign = TextAlign.Center, color = Color.Gray, fontSize = 12.sp)
+                Text(text = "2", textAlign = TextAlign.Center, color = Color.Gray, fontSize = 12.sp)
+                Text(text = "1", textAlign = TextAlign.Center, color = Color.Gray, fontSize = 12.sp)
+                Text(text = "Promedio", textAlign = TextAlign.Left, color = Color.Gray, fontSize = 12.sp)
+            }
+
+            Spacer(Modifier.size(5.dp))
+
             BarDark(value = 70, label = "1º Año")
+            Spacer(Modifier.size(2.dp))
             BarDark(value = 80, label = "2º Año")
+            Spacer(Modifier.size(2.dp))
             BarDark(value = 60, label = "3º Año")
+            Spacer(Modifier.size(2.dp))
             BarDark(value = 90, label = "4º Año")
+            Spacer(Modifier.size(2.dp))
             BarDark(value = 50, label = "5º Año")
         }
     }
@@ -208,19 +221,17 @@ fun OptionCardDark(text: String) {
         )
     }
 }
+
 @Composable
-fun ExamWorkGraph() {
-    val examsData = listOf(6, 8, 7, 9) // Datos de exámenes por entrega
-    val worksData = listOf(5, 6, 8, 10) // Datos de trabajos prácticos por entrega
+fun GraficoDeCoordenadas() {
+    val notas = listOf(6, 8, 7, 9) // Datos de entregas
     val maxData = 10 // Máximo valor posible en el gráfico (10)
 
     // Calcular la suma de los exámenes y trabajos prácticos
-    val totalExams = examsData.sum()
-    val totalWorks = worksData.sum()
+    val sumaDeNotas = notas.sum()
 
     // Calcular el promedio de todas las notas
-    val totalNotes = examsData + worksData
-    val average = totalNotes.average()
+    val promedio = sumaDeNotas.div(notas.size)
 
     Column(modifier = Modifier.padding(16.dp)) {
         // Gráfico de coordenadas
@@ -235,33 +246,34 @@ fun ExamWorkGraph() {
                 val height = size.height
 
                 val padding = 50f
-                val stepX = (width - 2 * padding) / (examsData.size - 1)
+                val stepX = (width - 2 * padding) / (notas.size - 1)
                 val stepY = (height - 2 * padding) / maxData
 
                 // Ejes X e Y
                 drawLine(
                     color = Color.Gray,
-                    start = androidx.compose.ui.geometry.Offset(padding, height - padding),
-                    end = androidx.compose.ui.geometry.Offset(width - padding, height - padding),
+                    start = Offset(padding, height - padding),
+                    end = Offset(width - padding, height - padding),
                     strokeWidth = 4f
                 )
                 drawLine(
                     color = Color.Gray,
-                    start = androidx.compose.ui.geometry.Offset(padding, height - padding),
-                    end = androidx.compose.ui.geometry.Offset(padding, padding),
+                    start = Offset(padding, height - padding),
+                    end = Offset(padding, padding),
                     strokeWidth = 4f
                 )
 
+                val entregas = listOf<String>("TP", "P", "TP", "P")
                 // Etiquetas en el eje X (Entregas)
-                examsData.forEachIndexed { index, _ ->
+                notas.forEachIndexed { index, _ ->
                     drawContext.canvas.nativeCanvas.drawText(
-                        "Entrega ${index + 1}",
+                        entregas[index],
                         padding + stepX * index,
                         height - 20f,
-                        android.graphics.Paint().apply {
+                        Paint().apply {
                             color = android.graphics.Color.WHITE
                             textSize = 36f
-                            textAlign = android.graphics.Paint.Align.CENTER
+                            textAlign = Paint.Align.CENTER
                         }
                     )
                 }
@@ -272,29 +284,23 @@ fun ExamWorkGraph() {
                         "$i",
                         padding - 20f,
                         height - padding - stepY * i,
-                        android.graphics.Paint().apply {
+                        Paint().apply {
                             color = android.graphics.Color.WHITE
                             textSize = 36f
-                            textAlign = android.graphics.Paint.Align.RIGHT
+                            textAlign = Paint.Align.RIGHT
                         }
                     )
                 }
 
                 // Dibujar las líneas de los datos
-                val examPoints = examsData.mapIndexed { index, value ->
-                    androidx.compose.ui.geometry.Offset(
-                        padding + stepX * index,
-                        height - padding - stepY * value
-                    )
-                }
-                val workPoints = worksData.mapIndexed { index, value ->
-                    androidx.compose.ui.geometry.Offset(
+                val examPoints = notas.mapIndexed { index, value ->
+                    Offset(
                         padding + stepX * index,
                         height - padding - stepY * value
                     )
                 }
 
-                // Línea de exámenes
+                // Función
                 examPoints.zipWithNext().forEach { (start, end) ->
                     drawLine(
                         color = Menta,
@@ -305,28 +311,11 @@ fun ExamWorkGraph() {
                     )
                 }
 
-                // Línea de trabajos prácticos
-                workPoints.zipWithNext().forEach { (start, end) ->
-                    drawLine(
-                        color = Color.Cyan,
-                        start = start,
-                        end = end,
-                        strokeWidth = 8f,
-                        cap = StrokeCap.Round
-                    )
-                }
 
                 // Puntos en los datos
                 examPoints.forEach { point ->
                     drawCircle(
                         color = Menta,
-                        center = point,
-                        radius = 10f
-                    )
-                }
-                workPoints.forEach { point ->
-                    drawCircle(
-                        color = Color.Cyan,
                         center = point,
                         radius = 10f
                     )
@@ -356,44 +345,19 @@ fun ExamWorkGraph() {
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "Total exámenes:",
+                        text = "Entregas: ",
                         color = Color.Gray,
                         fontSize = 16.sp
                     )
                     Spacer(modifier = Modifier.weight(1f))
                     Text(
-                        text = "$totalExams",
+                        text = notas.size.toString(),
                         fontWeight = FontWeight.Bold,
                         color = Color.White,
                         fontSize = 16.sp
                     )
                 }
 
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.Start
-                ) {
-                    // Cuadro de color para Trabajos Prácticos
-                    Box(
-                        modifier = Modifier
-                            .size(20.dp)
-                            .background(Color.Cyan)
-                            .align(Alignment.CenterVertically)
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(
-                        text = "Total trabajos prácticos:",
-                        color = Color.Gray,
-                        fontSize = 16.sp
-                    )
-                    Spacer(modifier = Modifier.weight(1f))
-                    Text(
-                        text = "$totalWorks",
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White,
-                        fontSize = 16.sp
-                    )
-                }
 
                 Spacer(modifier = Modifier.height(8.dp))
 
@@ -407,7 +371,7 @@ fun ExamWorkGraph() {
                         fontSize = 16.sp
                     )
                     Text(
-                        text = "%.2f".format(average),
+                        text = "$promedio",
                         fontWeight = FontWeight.Bold,
                         color = Color.White,
                         fontSize = 16.sp
@@ -434,7 +398,7 @@ fun MateriasDropdown(){
     ) {
         // Texto
         Text(
-            text = "Materias",
+            text = "Desarrollo De Interfaces",
             color = Color.White,
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold
